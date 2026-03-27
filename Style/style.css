@@ -7,9 +7,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: grid;
-    grid-template-rows: 20% 80% 10% ;
+    grid-template-rows: auto 1fr auto;
     width: 100%;
 }
+
 header {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -20,7 +21,9 @@ header {
     width: 100%;
     padding: 2% 15%;
     min-height: 35vh;
+    overflow: hidden;
 }
+
 nav {
     display: grid;
     grid-template-columns: 30% 70%;
@@ -29,12 +32,12 @@ nav {
     padding: 0% 1% 3% 1%;
     width: 100%;
 }
- 
+
 nav img {
     height: 90%;
     width: auto;
 }
- 
+
 nav .enlaces {
     display: grid;
     grid-template-columns: repeat(5, 10%);
@@ -42,7 +45,7 @@ nav .enlaces {
     align-items: center;
     gap: 1.5rem;
 }
- 
+
 nav .enlaces a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
@@ -55,7 +58,7 @@ nav .enlaces a {
 nav .enlaces a:hover {
     color: white;
 }
- 
+
 header .titulo {
     display: grid;
     grid-template-rows: auto auto auto;
@@ -64,13 +67,13 @@ header .titulo {
     text-align: center;
     padding: 6% 10% 5%;
 }
- 
+
 .titulo h1 {
     color: white;
     font-size: 250%;
     font-weight: 800;
 }
- 
+
 header .titulo p {
     margin: 2.5% 0 5%;
     color: rgba(255, 255, 255, 0.6);
@@ -78,7 +81,7 @@ header .titulo p {
     line-height: 1.7;
     width: 80%;
 }
- 
+
 .titulo button {
     color: white;
     background-color: rgb(255, 76, 76);
@@ -89,21 +92,21 @@ header .titulo p {
     cursor: pointer;
     text-transform: uppercase;
 }
- 
+
 .titulo button:hover {
     background-color: transparent;
     color: rgb(253, 57, 57);
 }
- 
+
 main {
     display: grid;
-    grid-template-rows: 70% 30%;
+    grid-template-rows: auto auto;
     width: 100%;
 }
- 
+
 section {
     display: grid;
-    grid-template-rows: 32% 34% 32%;
+    grid-template-rows: auto auto auto;
     width: 100%;
 }
 
@@ -117,26 +120,31 @@ section {
     background-color: #fff;
     align-content: center;
     justify-content: center;
+    overflow: hidden;
+
 }
- 
+
 .articulo {
     display: grid;
-    grid-template-rows:  45% 10% 45%;
+    grid-template-rows: 45% 10% 45%;
     justify-items: center;
     align-content: center;
     text-align: center;
     padding: 0.3%;
-    width:80%;
+    width: 80%;
+    overflow: hidden;
+    min-height: 0;
+
+
 }
- 
+
 .articulo img {
     width: 100px;
     height: 50px;
     object-fit: contain;
     margin-bottom: 5%;
-    filter: invert(30%) sepia(90%) saturate(500%) hue-rotate(320deg) brightness(110%);
 }
- 
+
 .articulo h3 {
     font-size: 0.7rem;
     font-weight: 700;
@@ -145,57 +153,106 @@ section {
     margin-bottom: 4%;
     text-transform: uppercase;
 }
- 
+
 .articulo p {
     font-size: 0.7rem;
     color: #999;
     line-height: 1.7;
 }
- 
+
 .images {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 50%);
+    grid-template-rows: repeat(2, 280px);
     width: 100%;
-    height: 100%;
     gap: 0.1%;
 }
- 
-.images img {
+
+.image-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.image-item img {
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
- 
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(220, 50, 50, 0.82);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-item:hover .overlay {
+    opacity: 1;
+}
+
+.image-item:hover img {
+    transform: scale(1.05);
+}
+
+.overlay p {
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.overlay span {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+}
+
 .persons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 3%;
     padding: 5% 8%;
     background-color: #fff;
+    overflow: hidden;
 }
- 
+
 .person {
     display: grid;
-    grid-template-rows: auto auto auto auto auto;
     align-content: start;
     text-align: left;
+    overflow: hidden;
 }
- 
+
 .person img {
     width: 100%;
+    max-width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     margin-bottom: 6%;
+    display: block;
 }
- 
+
 .person h3 {
     font-size: 0.8rem;
     font-weight: 700;
     color: #333;
     margin-bottom: 2%;
 }
- 
+
 .person h4 {
     font-size: 0.6rem;
     font-weight: 600;
@@ -204,14 +261,14 @@ section {
     margin-bottom: 4%;
     text-transform: uppercase;
 }
- 
+
 .person p {
     font-size: 0.65rem;
     color: #999;
     line-height: 1.7;
     margin-bottom: 5%;
 }
- 
+
 .person .redes {
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -219,34 +276,32 @@ section {
     gap: 8px;
     align-items: center;
 }
- 
+
 .person .redes img {
     width: 18px;
     height: 18px;
     object-fit: contain;
 }
- 
-/* ===================== ASIDE ===================== */
+
 aside {
     display: grid;
     grid-template-rows: auto auto;
     width: 100%;
 }
- 
-/* ---- Testimonial / Information ---- */
+
 .information {
     display: grid;
     grid-template-columns: 45% 55%;
     width: 100%;
     min-height: 35vh;
 }
- 
-.information > img {
+
+.information>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
- 
+
 .information .text {
     display: grid;
     grid-template-rows: 1fr auto auto;
@@ -254,7 +309,7 @@ aside {
     background-color: #3d2a3e;
     padding: 8% 10%;
 }
- 
+
 .information .text p {
     color: white;
     font-size: 1.1rem;
@@ -262,7 +317,7 @@ aside {
     line-height: 1.7;
     margin-bottom: 6%;
 }
- 
+
 .information .text h5 {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.6rem;
@@ -270,7 +325,7 @@ aside {
     text-transform: uppercase;
     margin-bottom: 6%;
 }
- 
+
 .punticos {
     display: grid;
     grid-template-columns: repeat(5, auto);
@@ -278,22 +333,21 @@ aside {
     gap: 6px;
     align-items: center;
 }
- 
+
 .punto {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.3);
 }
- 
+
 .puntoActivo {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: white;
 }
- 
-/* ---- Download CTA ---- */
+
 .Download {
     display: grid;
     grid-template-rows: auto auto auto;
@@ -302,7 +356,7 @@ aside {
     padding: 5% 20%;
     background-color: #fff;
 }
- 
+
 .Download h2 {
     font-size: 1.5rem;
     font-weight: 300;
@@ -310,7 +364,7 @@ aside {
     margin-bottom: 2%;
     letter-spacing: 0.02em;
 }
- 
+
 .Download h4 {
     font-size: 0.6rem;
     font-weight: 600;
@@ -319,7 +373,7 @@ aside {
     text-transform: uppercase;
     margin-bottom: 4%;
 }
- 
+
 .Download button {
     color: white;
     background-color: rgb(253, 57, 57);
@@ -331,20 +385,19 @@ aside {
     cursor: pointer;
     text-transform: uppercase;
 }
- 
+
 .Download button:hover {
     background-color: transparent;
     color: rgb(253, 57, 57);
 }
- 
-/* ===================== FOOTER ===================== */
+
 footer {
     display: grid;
     grid-template-rows: auto auto;
     background-color: #2b2b3b;
     width: 100%;
 }
- 
+
 footer .up {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -352,13 +405,13 @@ footer .up {
     padding: 4% 10%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
- 
+
 footer .up .location {
     display: grid;
     grid-template-rows: auto auto auto;
     align-content: start;
 }
- 
+
 footer .up .location h4 {
     color: white;
     font-size: 0.7rem;
@@ -367,14 +420,14 @@ footer .up .location h4 {
     text-transform: uppercase;
     margin-bottom: 8%;
 }
- 
+
 footer .up .location h5 {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.65rem;
     font-weight: 400;
     line-height: 1.8;
 }
- 
+
 footer .up .redes {
     display: grid;
     grid-template-rows: auto auto;
@@ -382,7 +435,7 @@ footer .up .redes {
     justify-items: center;
     text-align: center;
 }
- 
+
 footer .up .redes h4 {
     color: white;
     font-size: 0.7rem;
@@ -391,7 +444,7 @@ footer .up .redes h4 {
     text-transform: uppercase;
     margin-bottom: 8%;
 }
- 
+
 footer .up .redes .redes {
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -399,19 +452,19 @@ footer .up .redes .redes {
     justify-content: center;
     align-items: center;
 }
- 
+
 footer .up .redes .redes img {
     width: 30px;
     height: 30px;
     object-fit: contain;
 }
- 
+
 footer .up .Active {
     display: grid;
     grid-template-rows: auto auto;
     align-content: start;
 }
- 
+
 footer .up .Active h4 {
     color: white;
     font-size: 0.7rem;
@@ -420,27 +473,353 @@ footer .up .Active h4 {
     text-transform: uppercase;
     margin-bottom: 8%;
 }
- 
+
 footer .up .Active p {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.65rem;
     line-height: 1.7;
 }
- 
+
 footer .low {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 2% 10%;
 }
- 
+
 footer .low .bajo {
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.6rem;
 }
- 
+
 footer .low p:last-child {
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.6rem;
     text-align: right;
+}
+
+@media (max-width: 1024px) {
+    header {
+        padding: 2% 8%;
+    }
+
+    nav {
+        grid-template-columns: 25% 75%;
+    }
+
+    nav .enlaces {
+        gap: 1rem;
+    }
+
+    .titulo h1 {
+        font-size: 200%;
+    }
+
+    .titulo p {
+        font-size: 110%;
+        width: 90%;
+    }
+
+    .articulos {
+        padding: 5% 8%;
+        column-gap: 2%;
+    }
+
+    .persons {
+        padding: 5% 5%;
+        column-gap: 2%;
+    }
+
+    .Download {
+        padding: 5% 12%;
+    }
+
+    footer .up {
+        padding: 4% 7%;
+    }
+
+    footer .low {
+        padding: 2% 7%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 3% 6%;
+        overflow: hidden;
+        min-height: auto;
+    }
+
+    nav {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 1rem;
+        padding-bottom: 5%;
+    }
+
+    nav img {
+        height: 45px;
+        width: auto;
+    }
+
+    nav .enlaces {
+        grid-template-columns: repeat(5, auto);
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    nav .enlaces a {
+        font-size: 0.6rem;
+    }
+
+    header .titulo {
+        padding: 8% 5% 6%;
+    }
+
+    .titulo h1 {
+        font-size: 170%;
+        line-height: 1.3;
+    }
+
+    .titulo p {
+        font-size: 95%;
+        width: 100%;
+        margin: 4% 0 6%;
+    }
+
+    .titulo button {
+        padding: 2.5% 6%;
+        font-size: 0.65rem;
+    }
+
+    .articulos {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 7% 7%;
+        column-gap: 5%;
+        row-gap: 6%;
+        overflow: hidden;
+
+    }
+
+    .articulo {
+        width: 100%;
+        grid-template-rows: auto auto auto;
+        gap: 3px;
+        overflow: hidden;
+
+    }
+
+    .articulo img {
+
+        height: 100%;
+        max-width: 100%;
+        overflow: hidden
+    }
+
+    .images {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 200px);
+        gap: 0.15%;
+    }
+
+    .persons {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 5%;
+        row-gap: 2%;
+        padding: 5% 6%;
+        overflow: hidden;
+    }
+
+    .person img {
+        width: 70%;
+        max-width: 70%;
+        display: block;
+    }
+
+    .information {
+        grid-template-columns: 1fr;
+    }
+
+    .information>img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .information .text {
+        padding: 10% 8%;
+    }
+
+    .information .text p {
+        font-size: 1rem;
+    }
+
+
+    .Download {
+        padding: 10% 8%;
+    }
+
+    .Download h2 {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 4%;
+    }
+
+    .Download h4 {
+        margin-bottom: 6%;
+    }
+
+    .Download button {
+        padding: 2% 7%;
+    }
+
+    footer .up {
+        grid-template-columns: 1fr;
+        row-gap: 8%;
+        padding: 7% 6%;
+        text-align: center;
+    }
+
+    footer .up .redes .redes {
+        justify-content: center;
+    }
+
+    footer .up .location,
+    footer .up .Active {
+        justify-items: center;
+        text-align: center;
+    }
+
+    footer .low {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        padding: 4% 6%;
+        gap: 8px;
+    }
+
+    footer .low p:last-child {
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    nav .enlaces {
+        grid-template-columns: repeat(3, auto);
+        row-gap: 0.6rem;
+        flex-wrap: wrap;
+    }
+
+    .titulo h1 {
+        font-size: 140%;
+    }
+
+    .images {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 160px);
+    }
+
+    .articulos {
+        padding: 8% 5%;
+    }
+
+    .persons {
+        grid-template-columns: 1fr;
+        padding: 8% 10%;
+    }
+
+    .person {
+        align-items: center;
+        text-align: center;
+    }
+
+    .person img {
+        width: 70%;
+        margin: 0 auto 6%;
+    }
+
+    .person .redes {
+        justify-content: center;
+    }
+
+    .information .text p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 4% 5%;
+    }
+
+    nav .enlaces {
+        grid-template-columns: repeat(2, auto);
+        gap: 0.7rem;
+    }
+
+    .titulo h1 {
+        font-size: 120%;
+    }
+
+    .titulo p {
+        font-size: 85%;
+    }
+
+    .articulos {
+        grid-template-columns: 1fr;
+        padding: 8% 8%;
+    }
+
+    .articulo {
+        text-align: center;
+        justify-items: center;
+    }
+
+    .images {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(4, 130px);
+    }
+
+    .information>img {
+        height: 220px;
+    }
+
+    .information .text {
+        padding: 12% 7%;
+    }
+
+    .information .text p {
+        font-size: 0.9rem;
+    }
+
+    .Download h2 {
+        font-size: 1rem;
+    }
+
+    footer .up .redes .redes img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .titulo h1 {
+        font-size: 105%;
+    }
+
+    nav .enlaces a {
+        font-size: 0.52rem;
+    }
+
+    .images {
+        grid-template-rows: repeat(4, 110px);
+    }
+
+    .Download h2 {
+        font-size: 0.9rem;
+    }
+
+    .persons {
+        padding: 8% 5%;
+    }
 }
